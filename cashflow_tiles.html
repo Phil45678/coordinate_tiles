@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+
+* { 
+    text-align: center; 
+} 
+.title_big {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: larger;
+}
+.below_title{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: aliceblue;
+    font-size: large;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.background_coordinate{
+    position: absolute;
+    z-index: -50, 
+}
+
+.tile{
+    width:45%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+/* .tile:hover{
+    transform: scale(1.1);
+} */
+
+.popup-tile{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px #fff;
+    border-radius: 5px;
+    /* width: 750px; */
+    object-fit: cover;
+    width:85%;
+    height: 85%;
+    /* background: rgba(0, 0, 0, .9); */
+    z-index: 10000;
+}
+
+
+.fullsized_tile{
+    width:100%;
+    height: 200%;
+    margin: 0 auto;
+}
+
+.rotated_arrow{
+    transform: rotate(90deg);
+}
+
+.container_vertical {
+    width:4px;
+    height:95%;
+    background:#ccc;
+    margin: 0 auto;
+    /* position: absolute; */
+}
+.arrow-top {
+	width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+
+    border-bottom: 10px solid #ccc;
+    margin-bottom: 95%;
+    /* float:none; */
+    /* margin-top:-20px;
+    margin-right:-40px; */
+}
+.arrow-bottom {
+	width: 0; 
+	height: 0; 
+	border-top:5px solid transparent;
+	border-bottom: 5px solid transparent; 
+	float:bottom;
+	border-right:40px solid #ccc;
+    margin-top:-20px;
+    margin-left:-40px;
+}
+
+.container_horizontal {
+    width:95%;
+    height:4px;
+    background:#ccc;
+    margin:0 auto;
+    /* position: absolute; */
+}
+.arrow-right {
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 20px solid #ccc;
+    float:right;
+    margin-top:-20px;
+    margin-right:-2px;
+    /* 
+    margin-right:-40px; */
+}
+.arrow-left {
+	width: 0; 
+	height: 0; 
+	border-top:40px solid transparent;
+	border-bottom: 40px solid transparent; 
+	float:left;
+	border-right:40px solid #ccc;
+    margin:0 auto
+    /* margin-top:-20px;
+    margin-left:-40px; */
+}
+
+.foreground {
+    z-index: 1;
+}
+
+
+.dot {
+    height: 60px;
+    width: 60px;
+    
+    background-color: rgb(21, 96, 130);
+    border-radius: 50%;
+    
+    position: absolute;
+    z-index: 1000, 
+}
+
+.checkbox_border{
+    border:1px 
+    solid black; 
+    margin: 10px;
+    margin-bottom: 10px;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+       
+        <table style="width: 95%; height: 80%;">
+            <tr>
+                <td class="tile"  style="background-color:rgb(255, 192, 0);" onclick="changeFinanzenTile(this)"> 
+                    <!-- onclick="change_tile(this)" -->
+                    <!-- onclick="onTileClick()" -->
+                    <p class="title_big" >Selbstständig</p>
+                    <p class="below_title">Zeit = €€</p>
+                    <div class="checkbox_border" id="FinanzenCheckbox" style="visibility: hidden;">
+                        <label>0</label>
+                        <input type="checkbox" id="Finanzen1" value="Value1" onclick="selectOnlyFinanzen(this.id)"/>
+                        <label>1</label>
+                        <input type="checkbox" id="Finanzen2" value="Value1" onclick="selectOnlyFinanzen(this.id)"/>
+                        <label>2</label>
+                        <input type="checkbox" id="Finanzen3" value="Value1" onclick="selectOnlyFinanzen(this.id)"/>
+                        <label>3</label>
+                        <input type="checkbox" id="Finanzen4" value="Value1" onclick="selectOnlyFinanzen(this.id)"/> 
+                    </div>
+                    
+                </td>
+                <td class="tile" style="background-color:rgb(232, 119, 34);" onclick="changeBerufTile(this)" >
+                    <p class="title_big" >Unternehmer</p>
+                    <p class="below_title"> 🚹︎🚹︎🚹︎ = €€€</p>
+                
+                    <div class="checkbox_border" id="BerufCheckbox" style="visibility: hidden;">
+                        <label>0</label>
+                        <input type="checkbox" id="Beruf1" value="Value1" onclick="selectOnlyBeruf(this.id)"/>
+                        <label>1</label>
+                        <input type="checkbox" id="Beruf2" value="Value1" onclick="selectOnlyBeruf(this.id)"/>
+                        <label>2</label>
+                        <input type="checkbox" id="Beruf3" value="Value1" onclick="selectOnlyBeruf(this.id)"/>
+                        <label>3</label>
+                        <input type="checkbox" id="Beruf4" value="Value1" onclick="selectOnlyBeruf(this.id)"/> 
+                    </div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="tile" style="background-color:rgb(146, 208, 80);" onclick="changeGesundheitTile(this)">
+                    <p class="title_big" >Angestellt</p>
+                    <p class="below_title">Zeit = €</p>
+                    <div class="checkbox_border" id="GesundheitCheckbox" style="visibility: hidden;">
+                        <label>0</label>
+                        <input type="checkbox" id="Gesundheit1" value="Value1" onclick="selectOnlyGesundheit(this.id)"/>
+                        <label>1</label>
+                        <input type="checkbox" id="Gesundheit2" value="Value1" onclick="selectOnlyGesundheit(this.id)"/>
+                        <label>2</label>
+                        <input type="checkbox" id="Gesundheit3" value="Value1" onclick="selectOnlyGesundheit(this.id)"/>
+                        <label>3</label>
+                        <input type="checkbox" id="Gesundheit4" value="Value1" onclick="selectOnlyGesundheit(this.id)"/> 
+                    </div>
+                </td>
+                <td class="tile" style="background-color:rgb(112, 48, 160);" onclick="changeBeziehungTile(this)">
+                    <p class="title_big" >Investor</p>
+                    <p class="below_title">€ = €€€€</p>
+                    <div class="checkbox_border" id="BeziehungCheckbox" style="visibility: hidden;">
+                        <label>0</label>
+                        <input type="checkbox" id="Beziehung1" value="Value1" onclick="selectOnlyBeziehung(this.id)"/>
+                        <label>1</label>
+                        <input type="checkbox" id="Beziehung2" value="Value1" onclick="selectOnlyBeziehung(this.id)"/>
+                        <label>2</label>
+                        <input type="checkbox" id="Beziehung3" value="Value1" onclick="selectOnlyBeziehung(this.id)"/>
+                        <label>3</label>
+                        <input type="checkbox" id="Beziehung4" value="Value1" onclick="selectOnlyBeziehung(this.id)"/> 
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <!-- <script>
+        document.querySelectorAll('.tile-container .tile').forEach(image=>{
+            image.onclick = () =>{
+                document.querySelector('.popup-tile').style.display = 'block'; 
+                document.querySelector('.popup-tile .tile').src = image.getAttribute('src');
+            }
+        }
+        )
+
+        document.querySelectorAll('.popup-tile span').onclick = () =>{
+            document.querySelector('.popup-tile').style.display = 'none'; 
+        }
+    </script> -->
+
+</body>
+
+<script src="app.js"></script>
+
+</html>

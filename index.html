@@ -3,173 +3,61 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-    <style>
-
-* { 
-    text-align: center; 
-} 
-.title_big {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: aliceblue;
-    font-weight: bold;
-    font-size: larger;
-}
-.below_title{
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: aliceblue;
-    font-size: large;
-}
-
-.zoom:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-
-.background_coordinate{
-    position: absolute;
-    z-index: -50, 
-}
-
-.tile{
-    width:45%;
-    height: 100%;
-    margin: 0 auto;
-}
-
-.rotated_arrow{
-    transform: rotate(90deg);
-}
-
-.container_vertical {
-    width:4px;
-    height:85%;
-    background:#ccc;
-    margin: 0 auto;
-    /* position: absolute; */
-}
-.arrow-top {
-	width: 0; 
-    height: 0; 
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-
-    border-bottom: 10px solid #ccc;
-    margin-bottom: 95%;
-    /* float:none; */
-    /* margin-top:-20px;
-    margin-right:-40px; */
-}
-.arrow-bottom {
-	width: 0; 
-	height: 0; 
-	border-top:5px solid transparent;
-	border-bottom: 5px solid transparent; 
-	float:bottom;
-	border-right:40px solid #ccc;
-    margin-top:-20px;
-    margin-left:-40px;
-}
-
-.container_horizontal {
-    width:95%;
-    height:4px;
-    background:#ccc;
-    margin:0 auto;
-    /* position: absolute; */
-}
-.arrow-right {
-	width: 0; 
-	height: 0; 
-	border-top: 20px solid transparent;
-	border-bottom: 20px solid transparent;
-	border-left: 20px solid #ccc;
-    float:right;
-    margin-top:-20px;
-    margin-right:-2px;
-    /* 
-    margin-right:-40px; */
-}
-.arrow-left {
-	width: 0; 
-	height: 0; 
-	border-top:40px solid transparent;
-	border-bottom: 40px solid transparent; 
-	float:left;
-	border-right:40px solid #ccc;
-    margin:0 auto
-    /* margin-top:-20px;
-    margin-left:-40px; */
-}
-
-.foreground {
-    z-index: 1;
-}
-    </style>
+    <link rel="apple-touch-icon" href="favicon.ico">
+    
 </head>
 
+
 <body>
-    <!-- <h1>TITLE</h1> -->
 
-    <!-- <button onClick="alertButton()">
-        Click me 
-    </button> -->
+    <div class="container">
 
-    
+        <div class="tile-container">
 
-    <div style="display: flex; justify-content: center; align-items: center;">
-       
+            <div class="tile" id="HappinessLink" onclick="goToHappinessTilesSite()" href="happiness_tiles.html">
+                <!-- style="display: flex; justify-content: center; align-items: center;" -->
+                <div class="title_big" style="background-color:rgb(21, 96, 130);">
+                    Glück
+                </div>
+            </div>
 
-        <!-- Horizontal arrow -->
-        <div  class="container_horizontal background_coordinate">
-            <!-- <span class="arrow-left"></span>
-            <span class="arrow-right"></span> -->
+            <div class="tile" id="CashflowLink" onclick="goToCashflowTilesSite()" href="cashflow_tiles.html">
+                <!-- onclick="goToCashflowTilesSite()" href="cashflow_tiles.html" -->
+                <!-- style="display: flex; justify-content: center; align-items: center;" -->
+                <div class="title_big" style="background-color:rgb(255, 192, 0); ">
+                    Cashflow
+                </div>
+            </div>
+
+          
+
+            <!-- <div class="popup-tile">
+                <span>&times;</span>
+                <img src="images/e611e49b-12e1-4205-929a-b167f47bbf10_1_65fd629d03939.png" alt="">
+            </div> -->
+
         </div>
-
-
-        <!-- Vertical arrow -->
-        <div  class="container_vertical background_coordinate">
-            <!-- <span class="arrow-bottom"></span> -->
-            <!-- <span class="arrow-top"></span> -->
-        </div>
-
-        <table style="width: 95%; height: 80%;">
-            <tr >
-                <td class=" tile"  style="background-color:rgb(255, 192, 0);" onclick="onTileClick()">
-                    <p class="title_big" >Finanzen</p>
-                    <p class="below_title">Einnahmen</p>
-                    <p class="below_title">Ausgaben</p>
-                    <p class="below_title"> </p>
-                </td>
-                <td class=" tile" style="background-color:rgb(232, 119, 34);">
-                    <p class="title_big" >Beruf</p>
-                    <p class="below_title">Wertschätzung</p>
-                    <p class="below_title">Selbstbestimmung</p>
-                    <p class="below_title">Sinnhaftigkeit</p>
-                </td>
-            </tr>
-            
-            <tr>
-                <td class=" tile" style="background-color:rgb(146, 208, 80);">
-                    <p class="title_big" >Gesundheit</p>
-                    <p class="below_title">Körper</p>
-                    <p class="below_title">Seele</p>
-                    <p class="below_title"> </p>
-                </td>
-                <td class=" tile" style="background-color:rgb(112, 48, 160);">
-                    <p class="title_big" >Beziehung</p>
-                    <p class="below_title">Familie</p>
-                    <p class="below_title">Partnerschaft</p>
-                    <p class="below_title">Freunde</p>
-                </td>
-            </tr>
-        </table>
 
     </div>
 
-    
+
+
+    <!-- <script>
+        document.querySelectorAll('.tile-container .tile').forEach(image=>{
+            image.onclick = () =>{
+                document.querySelector('.popup-tile').style.display = 'block'; 
+                document.querySelector('.popup-tile .tile').src = image.getAttribute('src');
+            }
+        }
+        )
+
+        document.querySelectorAll('.popup-tile span').onclick = () =>{
+            document.querySelector('.popup-tile').style.display = 'none'; 
+        }
+    </script> -->
 
 </body>
 
